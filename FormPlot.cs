@@ -49,11 +49,17 @@ namespace Plot
             var clipRectangle = e.ClipRectangle;
             var width = clipRectangle.Width;
             var height = clipRectangle.Height;
-
+            bool flagCorrectFrom = float.TryParse(textBoxFrom.Text, out float From);
+            bool flagCorrectTo = float.TryParse(textBoxTo.Text, out float To);
+            bool flagCorrectstep = int.TryParse(textBoxStep.Text, out int step);
             graphics.Clear(Color.White);
             graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             _plotter.DrawAxes(graphics, width, height);
             _plotter.DrawPlot(graphics, _function, width);
+            if (flagCorrectFrom && flagCorrectTo && flagCorrectstep)
+            {
+                labelResult.Text = _plotter.DrawRectangle(graphics, _function, From, To, width, step).ToString();
+            }
         }
 
         private void PictureBoxPlot_MouseMove(object sender, MouseEventArgs e)
@@ -104,7 +110,6 @@ namespace Plot
                 _controlToBitmap.SaveToLocation(saveFileDialog.FileName, ImageFormat.Png);
         }
 
-
         private void NumericFontSize_ValueChanged(object sender, EventArgs e)
         {
             _plotter.FontSizeInPoints = (float)numericFontSize.Value;
@@ -149,34 +154,13 @@ namespace Plot
 
             Settings.Default.Save();
         }
-        private void pictureBoxPlot_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxFrom_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBoxFunction_TextChanged(object sender, EventArgs e)
         {
 
         }
-
-        private void FormPlot_Load(object sender, EventArgs e)
+        private void textBoxFrom_TextChanged_1(object sender, EventArgs e)
         {
-
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FormPlot_Load_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

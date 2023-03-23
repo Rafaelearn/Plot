@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Plot
 {
@@ -40,7 +43,29 @@ namespace Plot
                 graphics.DrawLine(Pens.Gray, new PointF(i, 0), new PointF(i, height));
             }
         }
-
+        public float DrawRectangle(Graphics graphics, IFunction function, float From, float To, int width, int t)
+        {
+            float square = 0f;
+            float xMinf = From;
+            float xMaxf = To;
+            PointF[] pointFs = new PointF[4];
+            PointF? p = null;
+            if (function.IsValueOfXCorrect(xMinf))
+                p = GetPoint(xMinf, function.Y(xMinf));
+            //float step = (Unit / PixelsPerUnit) * 20;
+            float step = (xMaxf - xMinf) / t;
+            
+            for (float x = xMinf; x <= xMaxf; x += step)
+            {
+                pointFs[0] = GetPoint(x, 0);
+                pointFs[1] = GetPoint(x, function.Y(x));
+                pointFs[2] = GetPoint(x + step, function.Y(x));
+                pointFs[3] = GetPoint(x + step, 0);
+                graphics.DrawPolygon(Pens.Black, pointFs);
+                square += step * function.Y(x);
+            }
+            return square;
+        }
         public PointF GetCoordsAtPoint(Point point)
         {
             return new PointF((point.X - CenterPoint.X) / PixelsPerUnit * Unit, (CenterPoint.Y - point.Y) / PixelsPerUnit * Unit);

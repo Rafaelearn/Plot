@@ -15,6 +15,7 @@ namespace Plot
         float PlotWidth { get; set; }
 
         void DrawAxes(Graphics graphics, int width, int height);
+        float DrawRectangle(Graphics graphics, IFunction function, float For, float To, int width, int step);
         void DrawGrid(Graphics graphics, int width, int height);
         void DrawPlot(Graphics graphics, IFunction function, int width);
         PointF GetCoordsAtPoint(Point point);
