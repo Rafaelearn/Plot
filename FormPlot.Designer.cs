@@ -45,16 +45,17 @@
             label7 = new Label();
             buttonPlotColor = new Button();
             panelOptions = new Panel();
+            checkBoxUpper = new CheckBox();
+            label13 = new Label();
+            textBoxStep = new TextBox();
             labelResult = new Label();
             label11 = new Label();
-            textBox1 = new TextBox();
+            textBoxInput = new TextBox();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
             textBoxTo = new TextBox();
             textBoxFrom = new TextBox();
-            textBoxStep = new TextBox();
-            label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPlot).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericFontSize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericPlotWidth).BeginInit();
@@ -97,9 +98,9 @@
             // 
             // textBoxUnit
             // 
-            textBoxUnit.Location = new Point(40, 26);
+            textBoxUnit.Location = new Point(44, 24);
             textBoxUnit.Name = "textBoxUnit";
-            textBoxUnit.Size = new Size(26, 23);
+            textBoxUnit.Size = new Size(56, 23);
             textBoxUnit.TabIndex = 3;
             textBoxUnit.Validating += TextBoxUnit_Validating;
             textBoxUnit.Validated += TextBoxUnit_Validated;
@@ -216,11 +217,12 @@
             // panelOptions
             // 
             panelOptions.BackColor = SystemColors.Control;
+            panelOptions.Controls.Add(checkBoxUpper);
             panelOptions.Controls.Add(label13);
             panelOptions.Controls.Add(textBoxStep);
             panelOptions.Controls.Add(labelResult);
             panelOptions.Controls.Add(label11);
-            panelOptions.Controls.Add(textBox1);
+            panelOptions.Controls.Add(textBoxInput);
             panelOptions.Controls.Add(label10);
             panelOptions.Controls.Add(label9);
             panelOptions.Controls.Add(label8);
@@ -244,6 +246,35 @@
             panelOptions.Size = new Size(250, 593);
             panelOptions.TabIndex = 17;
             // 
+            // checkBoxUpper
+            // 
+            checkBoxUpper.AutoSize = true;
+            checkBoxUpper.Checked = true;
+            checkBoxUpper.CheckState = CheckState.Checked;
+            checkBoxUpper.Location = new Point(133, 297);
+            checkBoxUpper.Name = "checkBoxUpper";
+            checkBoxUpper.Size = new Size(65, 19);
+            checkBoxUpper.TabIndex = 29;
+            checkBoxUpper.Text = "Uppper";
+            checkBoxUpper.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Location = new Point(10, 293);
+            label13.Name = "label13";
+            label13.Size = new Size(43, 21);
+            label13.TabIndex = 28;
+            label13.Text = "Step:";
+            // 
+            // textBoxStep
+            // 
+            textBoxStep.Location = new Point(66, 293);
+            textBoxStep.Name = "textBoxStep";
+            textBoxStep.Size = new Size(40, 23);
+            textBoxStep.TabIndex = 26;
+            // 
             // labelResult
             // 
             labelResult.AutoSize = true;
@@ -264,12 +295,12 @@
             label11.TabIndex = 24;
             label11.Text = "Function";
             // 
-            // textBox1
+            // textBoxInput
             // 
-            textBox1.Location = new Point(10, 204);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(234, 23);
-            textBox1.TabIndex = 23;
+            textBoxInput.Location = new Point(10, 204);
+            textBoxInput.Name = "textBoxInput";
+            textBoxInput.Size = new Size(234, 23);
+            textBoxInput.TabIndex = 23;
             // 
             // label10
             // 
@@ -315,23 +346,6 @@
             textBoxFrom.Size = new Size(40, 23);
             textBoxFrom.TabIndex = 17;
             // 
-            // textBoxStep
-            // 
-            textBoxStep.Location = new Point(66, 293);
-            textBoxStep.Name = "textBoxStep";
-            textBoxStep.Size = new Size(40, 23);
-            textBoxStep.TabIndex = 26;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(10, 293);
-            label13.Name = "label13";
-            label13.Size = new Size(43, 21);
-            label13.TabIndex = 28;
-            label13.Text = "Step:";
-            // 
             // FormPlot
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -374,10 +388,11 @@
         private TextBox textBoxTo;
         private TextBox textBoxFrom;
         private Label label11;
-        private TextBox textBox1;
+        private TextBox textBoxInput;
         private Label label10;
         private Label labelResult;
         private Label label13;
         private TextBox textBoxStep;
+        private CheckBox checkBoxUpper;
     }
 }

@@ -11,6 +11,16 @@ namespace Plot
         {
             Coefficients = coefficients;
         }
+        public PolynomialFunction(string str)
+        {
+            List<float> floats = new List<float>();
+            string[] strings = str.Split(" ");
+            foreach (string s in strings) { 
+                float.TryParse(s, out float value);
+                floats.Add(value);
+            }
+            Coefficients = floats.ToArray();
+        }
 
         public float[] Coefficients { get; private set; }
 
@@ -30,11 +40,6 @@ namespace Plot
         public bool IsValueOfXCorrect(float x)
         {
             return true;
-        }
-
-        public object Clone()
-        {
-            return new PolynomialFunction(Coefficients.Clone() as float[]);
         }
 
         public bool TryPassParameters(string[] splitBySpace)

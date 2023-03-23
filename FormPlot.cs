@@ -6,9 +6,9 @@ namespace Plot
 {
     public partial class FormPlot : Form
     {
+
         private readonly IWinFormsPlotter _plotter;
         private readonly IControlToBitmap _controlToBitmap;
-        private IFunction _function = new PolynomialFunction(1, -2, 1, -4);
         private bool _mousePressedOnPlot = false;
         private Point _lastCenterPoint;
         private Point _pressedAtLocation;
@@ -21,7 +21,6 @@ namespace Plot
             _controlToBitmap.ControlToSaveBitmapFor = pictureBoxPlot;
             pictureBoxPlot.MouseWheel += PictureBoxPlot_MouseWheel;
             textBoxUnit.Text = _plotter.Unit.ToString(CultureInfo.InvariantCulture);
-            textBoxFunction.Text = _function.FormatAsString();
 
             _lastCenterPoint = _plotter.CenterPoint = Settings.Default.PlotCenter;
             numericFontSize.Value = Settings.Default.FontSize;
@@ -45,6 +44,8 @@ namespace Plot
 
         private void PictureBoxPlot_Paint(object sender, PaintEventArgs e)
         {
+            IFunction _function = new PolynomialFunction(textBoxInput.Text);
+            textBoxFunction.Text = _function.FormatAsString();
             var graphics = e.Graphics;
             var clipRectangle = e.ClipRectangle;
             var width = clipRectangle.Width;
@@ -58,7 +59,7 @@ namespace Plot
             _plotter.DrawPlot(graphics, _function, width);
             if (flagCorrectFrom && flagCorrectTo && flagCorrectstep)
             {
-                labelResult.Text = _plotter.DrawRectangle(graphics, _function, From, To, width, step).ToString();
+                labelResult.Text = _plotter.DrawRectangle(graphics, _function, From, To, width, step, checkBoxUpper.Checked).ToString();
             }
         }
 
