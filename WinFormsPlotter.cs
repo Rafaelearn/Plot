@@ -62,7 +62,7 @@ namespace Plot
                 pointFs[2] = GetPoint(x + step, function.Y(x));
                 pointFs[3] = GetPoint(x + step, 0);
                 graphics.DrawPolygon(Pens.Black, pointFs);
-                square += step * function.Y(x);
+                square += step * Math.Abs(function.Y(x));
             }
             return square;
         }
